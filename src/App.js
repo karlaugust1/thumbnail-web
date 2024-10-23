@@ -1,24 +1,33 @@
-import logo from './logo.svg';
 import './App.css';
+import { BrowserRouter as Router, Route, Routes, BrowserRouter } from "react-router-dom";
+import SimpleBottomNavigation from './components/bottom-navigation/BottomNavigation';
+import Form from './components/form/Form';
+import List from './components/list/List';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
+
+const darkTheme = createTheme({
+  palette: {
+    mode: 'dark',
+  },
+});
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={darkTheme}>
+      <CssBaseline />
+
+      <div className="App">
+        <div className="App-content">
+          <Routes>
+            <Route path="/" element={<Form />} />
+            <Route path="list" element={<List />} />
+          </Routes>
+        </div>
+        <SimpleBottomNavigation />
+      </div>
+    </ThemeProvider>
   );
 }
 
